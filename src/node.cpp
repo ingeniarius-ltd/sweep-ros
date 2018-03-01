@@ -29,6 +29,12 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <sweep/sweep.hpp>
 
+//colored terminal:
+#define RST  "\x1B[0m"
+#define KGRN  "\x1B[32m"
+#define FGRN(x) KGRN x RST
+#define BOLD(x) "\x1B[1m" x RST
+
 void publish_scan(ros::Publisher *pub,
                   const sweep::scan *scan, std::string frame_id)
 {
@@ -108,6 +114,8 @@ int main(int argc, char *argv[]) try
 
     ROS_INFO("expected rotation frequency: %d (Hz)", rotation_speed);
 
+    std::cout << BOLD(FGRN("[INFO] Successfully Connected to Sweep Laser!")) << std::endl;
+
     //Start Scan
     device.start_scanning();
 
@@ -126,5 +134,6 @@ int main(int argc, char *argv[]) try
 }
 
     catch (const sweep::device_error& e) {
-      std::cerr << "Error: " << e.what() << std::endl;
+      ROS_ERROR( "%s", e.what() );
+      //std::cerr << "Error: " << e.what() << std::endl;
 }

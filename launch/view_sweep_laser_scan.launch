@@ -1,3 +1,4 @@
+<!-- view_sweep_laser_scan -->
 <launch>
   <include file="$(find sweep_ros)/launch/sweep2scan.launch" />
 

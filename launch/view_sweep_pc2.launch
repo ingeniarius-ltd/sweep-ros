@@ -1,3 +1,4 @@
+<!-- view_sweep_pc2 -->
 <launch>
   <include file="$(find sweep_ros)/launch/sweep.launch" />
 
